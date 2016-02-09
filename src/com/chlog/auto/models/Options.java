@@ -21,11 +21,14 @@ public class Options{
 	private static Date toTime;
 	private static int reportId=2;
 	private static String[] arrayTableNameReport;
+	private static String tableNameFromSS;
 	
 	public static void setArrayTableNameReport(String[] value){
 		arrayTableNameReport=value;
 	}
-	
+	public static void setTableNameFromSS(String value){
+		tableNameFromSS=value;
+	}	
 	public static void setUrl(String value){
 		url=value;
 	}
@@ -57,10 +60,12 @@ public class Options{
 		reportId=value;
 	}
 	
-	public static String[] setArrayTableNameReport(String[] value){
+	public static String[] getArrayTableNameReport(){
 		return arrayTableNameReport;
 	}
-	
+	public static String getTableNameFromSS(){
+		return tableNameFromSS;
+	}
 	public static String getToken(){
 		return token;
 	}

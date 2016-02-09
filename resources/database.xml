@@ -18,7 +18,7 @@
 	</settings>
 	<report>
 		<tableNameField>Текст1</tableNameField>
-		<namesTableForReportField>Текст2</namesTableForReportField>
+		<tablesForReportField>Текст2</tablesForReportField>
 	</report>
 </database>
 

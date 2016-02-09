@@ -32,6 +32,7 @@ public class DataHelper{
 		datasource.setUser(optionDb.getUser());
 		datasource.setPassword(optionDb.getPassword());
 		this.optionsSettingTable=optionDb.getOptionsSettingsTable();
+		this.optionsReportFields=optionDb.getOptionsReport();
 		connection=datasource.getConnection();
 	}
 	
@@ -135,6 +136,15 @@ public class DataHelper{
 								}else{
 									if(result.getString(1).trim().equals(this.optionsSettingTable.getReportIdField())){
 										Options.setReportId(result.getInt(2)); //get Report ID
+									}else{
+										if(result.getString(1).trim().equals(this.optionsReportFields.getTableNameField())){
+											Options.setTableNameFromSS(result.getString(2)); //get table for report
+										}else{
+											if(result.getString(1).trim().equals(this.optionsReportFields.getTablesForReportField())){
+												String[] arr=result.getString(2).split(";");
+												Options.setArrayTableNameReport(arr); //get report tables
+											}
+										}
 									}
 								}
 							}

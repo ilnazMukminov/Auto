@@ -18,7 +18,10 @@ public class ReportLoaderDB extends AbstractReportLoader{
 			System.out.println(Options.getToTimeD());
 			System.out.println(Options.getFromTimeD());
 			System.out.println(Options.getReportId());
-			System.out.println(Options.getResourceName());			
+			System.out.println(Options.getResourceName());	
+			System.out.println(Options.getTableNameFromSS());
+			for(int i=0;i<Options.getArrayTableNameReport().length;++i)
+				System.out.println(Options.getArrayTableNameReport()[i]);			
 			System.in.read();			
 		}catch(Exception e){
 			processingDataError("getOptions",e.getMessage());			
