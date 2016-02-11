@@ -44,7 +44,7 @@ public class DataHelper{
 		PreparedStatement preparedStatement = null;
 		try{
 			preparedStatement=this.connection.prepareStatement(
-			"insert into mukminovit.testRep (ObjectName, TableName, BeginTime, BeginPos, EndTime, Position, Duration, Quantity, MaxSpeed) "+
+			"insert into "+Options.getTableNameFromSS()+" (ObjectName, TableName, BeginTime, BeginPos, EndTime, Position, Duration, Quantity, MaxSpeed) "+
 			"values (?,?,?,?,?,?,?,?,?)");
 			preparedStatement.setString(1,objectName);//ObjectName
 			preparedStatement.setString(2,tableName);//TableName
@@ -69,7 +69,7 @@ public class DataHelper{
 		try{
 			
 			preparedStatement=this.connection.prepareStatement(
-			"insert into mukminovit.testRep (ObjectName, TableName, BeginTime, BeginPos, EndTime, Position, Duration, Quantity, MaxSpeed) "+
+			"insert into "+Options.getTableNameFromSS()+" (ObjectName, TableName, BeginTime, BeginPos, EndTime, Position, Duration, Quantity, MaxSpeed) "+
 			"values (?,?,?,?,?,?,?,?,?)");
 			preparedStatement.setString(1,objectName);//ObjectName
 			preparedStatement.setString(2,"unit_trips");//TableName
@@ -142,7 +142,11 @@ public class DataHelper{
 										}else{
 											if(result.getString(1).trim().equals(this.optionsReportFields.getTablesForReportField())){
 												String[] arr=result.getString(2).split(";");
-												Options.setArrayTableNameReport(arr); //get report tables
+												String rStr="";
+												for(int i=0;i<arr.length;++i){
+													rStr=rStr.concat(arr[i]).concat(";");
+												}
+												Options.setTablesNameReport(rStr); //get report tables
 											}
 										}
 									}

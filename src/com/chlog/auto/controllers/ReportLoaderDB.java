@@ -20,17 +20,30 @@ public class ReportLoaderDB extends AbstractReportLoader{
 			System.out.println(Options.getReportId());
 			System.out.println(Options.getResourceName());	
 			System.out.println(Options.getTableNameFromSS());
-			for(int i=0;i<Options.getArrayTableNameReport().length;++i)
-				System.out.println(Options.getArrayTableNameReport()[i]);			
+			System.out.println(Options.getTablesNameReport());			
 			System.in.read();			
 		}catch(Exception e){
 			processingDataError("getOptions",e.getMessage());			
 		}		
 	}
 	@Override
-	protected void exportTable(Table table){
-		if(table!=null)
+	protected void exportTable(String nameObject,Table table){
+		if(table!=null){
 			System.out.println(table);
+			/*try{
+				if(dataHelper!=null){
+				if(table.getCountRows()=6)
+					dataHelper.dataBindStops(nameObject,table);
+				else
+					if(table.getCountRows()=7)
+						dataHelper.dataBindTrips(nameObject,table);					
+			}
+			}catch(Exception e){
+				processingDataError("exportTable",e.getMessage());
+			}
+			*/
+		}
+			
 	}	
 	public static void main(String[] args){
 		new Thread(new ReportLoaderDB()).start();		

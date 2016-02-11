@@ -21,4 +21,10 @@ public class ReportResultObj{
 			return this.reportResult.getTable(i);
 		return null;
 	}
+	
+	public void trimTables(){
+		if(this.reportResult!=null){
+			this.reportResult.trimTables();
+		}
+	}
 }

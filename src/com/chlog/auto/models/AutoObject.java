@@ -14,13 +14,25 @@ public class AutoObject{
 	public AutoObject(Unit unit){
 		this.unit=unit;
 	}
-	public void setReportResult(ReportResultObj value){
+	public void setReportResult(ReportResultObj value,String namesTable){
 		this.reportResultObj=value;
 		int countT=getTablesCount();
+		System.out.println(countT);
 		if(countT>0){
 			for(int i=0;i<countT;++i){
-				getTable(i).setIndex(i);
+				Table table=getTable(i);
+				if(table!=null){
+					table.setIndex(i);
+					String stName=table.getLabel().concat(";");
+					System.out.println(stName+"  "+namesTable);
+					if(namesTable.indexOf(stName)>-1){
+						System.out.println(table.getLabel());
+						table.setIsDelete(false);
+					}
+						
+				}								
 			}
+			this.reportResultObj.trimTables();
 		}
 	}
 	public ReportResultObj getReportResultObj(){
@@ -42,7 +54,7 @@ public class AutoObject{
 	public int getTableIndex(int i){
 		Table tb=this.getTable(i);
 		if(tb!=null)
-			return tb.getIndex(i);
+			return tb.getIndex();
 		return -1;		
 	}
 	public int getTablesCount(){
@@ -50,6 +62,11 @@ public class AutoObject{
 			return this.reportResultObj.getTablesCount();
 		return 0;
 	}
+	
+	public String getName(){
+		return this.toString();
+	}
+	
 	@Override
 	public String toString(){
 		if(this.unit!=null)

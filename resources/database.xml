@@ -9,7 +9,7 @@
 		<tableName>dba.sys_ass_data</tableName>
 		<group>Установки</group>
 		<code>6002</code>		
-		<urlField>СервЮзер</urlField>
+		<urlField>СервАдрес</urlField>
 		<tokenField>СервПароль</tokenField>
 		<resourceNameField>Пользовате</resourceNameField>
 		<fromTimeField>ДатаВремяН</fromTimeField>

@@ -6,10 +6,6 @@ import java.util.ArrayList;
 public class ReportResult{
 	private ArrayList<Table> tables;
  
-	//public Table[] getTables(){
-	//	return this.tables;
-	//}
-	
 	public Table getTable(int i){
 		if(i<getTablesCount())
 			return this.tables.get(i);
@@ -17,10 +13,23 @@ public class ReportResult{
 	}
 	
 	public int getTablesCount(){
-		if(this.tables!=null && tables.size()>0)
+		if(this.tables!=null && this.tables.size()>0)
 			return tables.size();
 		return 0;
 	}
 	
-	public 
+    public void trimTables(){
+		if(getTablesCount()>0){
+			int i=0;
+			while(i<this.tables.size()){
+				if(this.tables.get(i).getIsDelete()){
+					System.out.println(this.tables.get(i).getLabel());
+					this.tables.remove(i);
+					this.tables.trimToSize();					
+				}else{
+					++i;
+				}					
+			}
+		}		
+	}	
 } 

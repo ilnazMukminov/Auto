@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 public abstract class AbstractReportLoader extends AbstractReportController{
 	private AutoObject[] auto;
 	
-	protected abstract void exportTable(Table table);
+	protected abstract void exportTable(String nameObj,Table table);
 			
 	@Override
 	protected void processingError(String functionName,String error){
@@ -43,7 +43,9 @@ public abstract class AbstractReportLoader extends AbstractReportController{
 	}
 	@Override 
 	protected int getTableNumber(){
-		return Table.number;
+		if(auto!=null && auto.length>AutoObject.number && auto[AutoObject.number].getTable(Table.number)!=null)			
+			return auto[AutoObject.number].getTableIndex(Table.number);
+		return 0;
 	}
 	@Override
 	protected int getTableRowsCount(){
@@ -66,13 +68,13 @@ public abstract class AbstractReportLoader extends AbstractReportController{
 		RowObject[] rowObj=new RowObject[auto[AutoObject.number].getTable(Table.number).getCountRows()];   
 		rowObj=gson.fromJson(json, rowObj.getClass());  
 		auto[AutoObject.number].getTable(Table.number).setRows(rowObj);
-		exportTable(auto[AutoObject.number].getTable(Table.number));
+		exportTable(auto[AutoObject.number].getName(),auto[AutoObject.number].getTable(Table.number));
 	}
 	@Override
 	protected void initTablesForAutoObject(String json,Gson gson){
 		ReportResultObj resObj=new ReportResultObj();   
 		resObj=gson.fromJson(json, resObj.getClass());
-		auto[AutoObject.number].setReportResult(resObj);
+		auto[AutoObject.number].setReportResult(resObj,Options.getTablesNameReport());
 		Table.number=0;		
 	}		
 }

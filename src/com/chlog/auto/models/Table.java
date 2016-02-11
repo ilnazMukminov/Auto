@@ -20,10 +20,19 @@ public class Table{
 	private String[] header;
 	private RowObject[] arrRow;
 	private int index=0;
+	private boolean isDelete=true;
 	public static int number;
 	
 	public void setIndex(int value){
 		this.index=value;
+	}
+	
+	public void setIsDelete(boolean value){
+		this.isDelete=value;
+	}
+	
+	public boolean getIsDelete(){
+		return this.isDelete;
 	}
 	
 	public int getIndex(){
