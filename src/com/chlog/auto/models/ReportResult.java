@@ -23,7 +23,6 @@ public class ReportResult{
 			int i=0;
 			while(i<this.tables.size()){
 				if(this.tables.get(i).getIsDelete()){
-					System.out.println(this.tables.get(i).getLabel());
 					this.tables.remove(i);
 					this.tables.trimToSize();					
 				}else{

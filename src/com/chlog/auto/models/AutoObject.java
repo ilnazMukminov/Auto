@@ -17,19 +17,14 @@ public class AutoObject{
 	public void setReportResult(ReportResultObj value,String namesTable){
 		this.reportResultObj=value;
 		int countT=getTablesCount();
-		System.out.println(countT);
 		if(countT>0){
 			for(int i=0;i<countT;++i){
 				Table table=getTable(i);
 				if(table!=null){
 					table.setIndex(i);
 					String stName=table.getLabel().concat(";");
-					System.out.println(stName+"  "+namesTable);
-					if(namesTable.indexOf(stName)>-1){
-						System.out.println(table.getLabel());
-						table.setIsDelete(false);
-					}
-						
+					if(namesTable.indexOf(stName)>-1)
+						table.setIsDelete(false);										
 				}								
 			}
 			this.reportResultObj.trimTables();

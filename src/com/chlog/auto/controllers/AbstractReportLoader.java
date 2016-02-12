@@ -19,6 +19,11 @@ public abstract class AbstractReportLoader extends AbstractReportController{
 	@Override
 	protected void processingError(String functionName,String error){
 		System.out.println("Error ("+functionName+"): "+error);
+		try{
+			System.in.read();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 	}
 	@Override
 	protected long getAutoObjectId(){
@@ -28,8 +33,7 @@ public abstract class AbstractReportLoader extends AbstractReportController{
 	protected void initArrayAutoObjects(Item... items){
 		auto=new AutoObject[items.length];
 		for(int i=0;i<items.length;++i){
-			auto[i]=new AutoObject((Unit)items[i]);
-			System.out.println(auto[i]);
+			auto[i]=new AutoObject((Unit)items[i]);			
 		}
 	}
 	@Override

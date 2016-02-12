@@ -48,20 +48,17 @@ public abstract class AbstractReportController implements Runnable{
 	}
 	
 	private void processingDataErrorEx(String functionName,int errorCode){
-		System.out.println(errorCode);
 		processingError(functionName,Errors.getErrorText(errorCode));
 		processingDataLogoff();
 		
 	}
 	
-	private void processingDataError(String functionName,int errorCode){
-		System.out.println(errorCode);
+	private void processingDataError(String functionName,int errorCode){		
 		processingError(functionName,Errors.getErrorText(errorCode));
 		logoff();
 	}
 	
 	private void processingDataLogin(){
-		System.out.println(Options.getResourceName());
 		searchObjectBySysName(Options.getResourceType(), Options.getResourceName());
 	}
 	
@@ -119,12 +116,7 @@ public abstract class AbstractReportController implements Runnable{
 	}
 	
 	protected void processingDataLogoff(){
-		this.dispose();
-		try{
-			System.in.read();
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-		}
+		this.dispose();		
 		System.exit(0);
 	}	
 		
@@ -159,10 +151,6 @@ public abstract class AbstractReportController implements Runnable{
 	}
 	
 	protected void createReport(long objectId){  
-		System.out.println(Options.getReportId());
-		System.out.println(objectId);
-		System.out.println(Options.getReportInterval());
-		
 		reportObject.execReport(Options.getReportId(),objectId,0,Options.getReportInterval(),new ResponseHandler(){
 			@Override
 			public void onSuccess(String response){
@@ -198,8 +186,6 @@ public abstract class AbstractReportController implements Runnable{
 	}
 	
 	protected void getReportRows(){
-		System.out.println(getTableNumber());
-		System.out.println(getTableRowsCount());
 		reportObject.selectResultRows(getTableNumber(), 0, getTableRowsCount(), 0, new ResponseHandler(){
 			@Override
 			public void onSuccess(String response){

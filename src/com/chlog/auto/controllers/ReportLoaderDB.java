@@ -10,18 +10,11 @@ public class ReportLoaderDB extends AbstractReportLoader{
 	
 	@Override
 	protected void initOptions(){
+		System.out.println("Start initialization");
 		try{
-			DataHelper dataHelper=new DataHelper();
+			dataHelper=new DataHelper();
 			dataHelper.initOptions();	
-			System.out.println(Options.getUrl());
-			System.out.println(Options.getToken());			
-			System.out.println(Options.getToTimeD());
-			System.out.println(Options.getFromTimeD());
-			System.out.println(Options.getReportId());
-			System.out.println(Options.getResourceName());	
-			System.out.println(Options.getTableNameFromSS());
-			System.out.println(Options.getTablesNameReport());			
-			//System.in.read();			
+			System.out.println("Successful initialization");								
 		}catch(Exception e){
 			processingDataError("getOptions",e.getMessage());			
 		}		
@@ -29,19 +22,23 @@ public class ReportLoaderDB extends AbstractReportLoader{
 	@Override
 	protected void exportTable(String nameObject,Table table){
 		if(table!=null){
-			System.out.println(table);
-			/*try{
+			System.out.println("Object: "+nameObject+". Successful unloading table ("+table.getLabel()+") from the site");
+			try{				
 				if(dataHelper!=null){
-				if(table.getCountRows()=6)
-					dataHelper.dataBindStops(nameObject,table);
-				else
-					if(table.getCountRows()=7)
-						dataHelper.dataBindTrips(nameObject,table);					
-			}
+					if(table.getCountColumns()==6){
+						dataHelper.dataBindStops(nameObject,table);
+						System.out.println("Successful loading of the table ("+table.getLabel()+")  in the database");
+						
+					}else
+						if(table.getCountColumns()==8){
+							dataHelper.dataBindTrips(nameObject,table);
+							System.out.println("Successful loading of the table ("+table.getLabel()+")  in the database");
+						}							
+				}
 			}catch(Exception e){
 				processingDataError("exportTable",e.getMessage());
 			}
-			*/
+			
 		}
 			
 	}	
@@ -53,6 +50,7 @@ public class ReportLoaderDB extends AbstractReportLoader{
 	protected void dispose(){
 		if(dataHelper!=null){
 			dataHelper.close();
-		}
+		}		
+		System.out.println("Exit the program");
 	}
 }

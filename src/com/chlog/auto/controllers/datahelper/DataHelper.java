@@ -57,7 +57,6 @@ public class DataHelper{
 			preparedStatement.setString(9,"_");//MaxSpeed
 			preparedStatement.executeUpdate();
 		}catch (SQLException e){
-			System.out.println(objectName+" _ "+tableName+" - "+e.getMessage());
 			throw new SQLException(e);
 		}finally{
 			if(preparedStatement!=null)
@@ -82,7 +81,6 @@ public class DataHelper{
 			preparedStatement.setString(9,row.getStrItem(7));//MaxSpeed
 			preparedStatement.executeUpdate();
 		}catch (SQLException e){
-			System.out.println(objectName+" _ unit_trips  "+e.getMessage());
 			throw new SQLException(e);
 		}finally{
 			if(preparedStatement!=null)
@@ -91,7 +89,6 @@ public class DataHelper{
 	}
 
 	public void dataBindStops(String nameObject,Table table) throws Exception{
-		System.out.println(nameObject);
 		if(table!=null && table.getCountRows()>0){
 			for(int i=0;i<table.getCountRows();++i){
 				insertUnitStopsRow(nameObject,table.getName(),table.getRow(i));
@@ -155,14 +152,14 @@ public class DataHelper{
 						}
 					}
 				}				
-			}			
+			}
+			queryValue = "delete from "+Options.getTableNameFromSS();
+			preparedStatement.executeQuery();
 		}catch (SQLException e){
-			System.out.println(e.getMessage());
 			throw new SQLException(e);
 		}finally{
 			if(preparedStatement!=null)
 				preparedStatement.close();			
 		}		
-	}
-	
+	}	
 }
