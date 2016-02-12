@@ -21,7 +21,7 @@ public class ReportLoaderDB extends AbstractReportLoader{
 			System.out.println(Options.getResourceName());	
 			System.out.println(Options.getTableNameFromSS());
 			System.out.println(Options.getTablesNameReport());			
-			System.in.read();			
+			//System.in.read();			
 		}catch(Exception e){
 			processingDataError("getOptions",e.getMessage());			
 		}		

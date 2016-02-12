@@ -120,6 +120,11 @@ public abstract class AbstractReportController implements Runnable{
 	
 	protected void processingDataLogoff(){
 		this.dispose();
+		try{
+			System.in.read();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 		System.exit(0);
 	}	
 		
